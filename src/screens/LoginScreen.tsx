@@ -12,10 +12,9 @@ import { useAuth } from '../hooks/useAuth';
 import { useLanguage } from '../contexts/LanguageContext';
 import { LanguageToggle } from '../components/LanguageToggle';
 
-
-export const LoginScreen: React.FC = () => {
-  const { signIn, signUp  } = useAuth();
-  const { language, setLanguage, translate } = useLanguage();
+const LoginScreen: React.FC = () => {
+  const { signIn, signUp } = useAuth();
+  const { translate } = useLanguage();
 
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
@@ -88,7 +87,7 @@ export const LoginScreen: React.FC = () => {
             ? translate(isLogin ? 'loading.login' : 'loading.register')
             : translate(isLogin ? 'tab.login' : 'tab.register')
         }
-        onPress={handleLogin }
+        onPress={isLogin ? handleLogin : handleRegister}
         disabled={loading}
       />
 
@@ -126,3 +125,5 @@ const styles = StyleSheet.create({
     right: 20,
   },
 });
+
+export default LoginScreen;

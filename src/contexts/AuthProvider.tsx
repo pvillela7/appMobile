@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AuthContext } from './AuthContext';
 import { AuthContextType, User } from '../types/Auth';
 import { loginService, logoutService } from '../services/authService';
+import { registerService } from '../services/registerService';
 
 interface Props {
   children: ReactNode;
@@ -33,18 +34,10 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
   };
 
   const signUp = async (data: { name: string; email: string; password: string }) => {
-    const mockUser: User = {
-      id: '2',
-      name: data.name,
-      email: data.email,
-      token: ''
-    };
-
-    setUser(mockUser);
-    await AsyncStorage.setItem('@Auth:user', JSON.stringify(mockUser));
+    const newUser = await registerService(data.name, data.email, data.password);
+    setUser(newUser);
+    await AsyncStorage.setItem('@Auth:user', JSON.stringify(newUser));
   };
-
-
 
   const signOut = async () => {
     await logoutService();

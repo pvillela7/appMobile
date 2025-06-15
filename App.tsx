@@ -1,23 +1,19 @@
-// App.tsx
 import React from 'react';
-import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import { AuthProvider } from './src/contexts/AuthProvider';
 import { LanguageProvider } from './src/contexts/LanguageContext';
 import { useAuth } from './src/hooks/useAuth';
-import { LoginScreen } from './src/screens/LoginScreen';
-import { NavigationContainer } from '@react-navigation/native';
-import { BottomTabNavigator } from './src/navigation/BottomTabNavigator';
+import LoginScreen from './src/screens/LoginScreen';
+import StackNavigator from './src/navigation/StackNavigator';
 
 const AppContent = () => {
   const { user } = useAuth();
 
-  if (!user) {
-    return <LoginScreen />;
-  }
+  if (!user) return <LoginScreen />;
 
   return (
     <NavigationContainer>
-      <BottomTabNavigator />
+      <StackNavigator />
     </NavigationContainer>
   );
 };

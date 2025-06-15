@@ -2,8 +2,9 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useLanguage } from '../contexts/LanguageContext';
 
-export const ClassesScreen = () => {
+const ClassesScreen = () => {
   const { translate } = useLanguage();
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{translate('screen.classes')}</Text>
@@ -12,13 +13,8 @@ export const ClassesScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
+  container: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  title: { fontSize: 24, fontWeight: 'bold' },
 });
+
+export default ClassesScreen;
